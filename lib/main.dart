@@ -105,7 +105,7 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.symmetric(vertical: 36.0),
       child: RaisedButton(
         onPressed: () {
-          if (_formKey.currentState.validate()) {
+          if (_formKey.currentState!.validate()) {
             calculateImc();
           }
         },
@@ -131,7 +131,10 @@ class _HomeState extends State<Home> {
       decoration: InputDecoration(labelText: label),
       controller: controller,
       validator: (text) {
-        return text.isEmpty ? error : null;
+        if (text == null || text.isEmpty) {
+          return 'Por favor, adicione um texto';
+        }
+        return null;
       },
     );
   }
